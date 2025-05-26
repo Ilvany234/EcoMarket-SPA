@@ -31,4 +31,15 @@ public class InventoryService {
     public void eliminar(Long id) {
         repository.deleteById(id);
     }
+
+    public InventoryItem actualizar(Long id, InventoryItem itemActualizado) {
+        return repository.findById(id).map(item -> {
+            item.setNombre(itemActualizado.getNombre());
+            item.setCantidad(itemActualizado.getCantidad());
+            item.setDescripcion(itemActualizado.getDescripcion());
+            item.setPrecio(itemActualizado.getPrecio());
+            return repository.save(item);
+        }).orElseThrow(() -> new RuntimeException("Item no encontrado con id " + id));
+    }
+
 }

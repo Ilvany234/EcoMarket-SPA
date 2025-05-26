@@ -35,4 +35,10 @@ public class InventoryController {
     public void eliminar(@PathVariable Long id) {
         service.eliminar(id);
     }
+
+    @PutMapping("/{id}")
+    public InventoryItem actualizar(@PathVariable Long id, @RequestBody InventoryItem itemActualizado) {
+        return service.actualizar(id, itemActualizado);
+    }
+
 }
